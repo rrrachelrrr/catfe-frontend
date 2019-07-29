@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Cat extends Component {
 
+
   render() {
 
     return (
@@ -10,8 +11,10 @@ class Cat extends Component {
       onClick={()=> {this.props.handleCatClick(this.props.cat)}}
       src={this.props.cat.cat_img}
       alt='this a cat'/>
-      <h1> {this.props.cat.name} </h1>
-      <br/>
+      {(this.props.className==='side-bar-cat')?
+      <h1> {this.props.cat.name} </h1>: null
+      }
+
       </div>
     )
   }

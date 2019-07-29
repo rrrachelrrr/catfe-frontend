@@ -11,9 +11,14 @@ export default class Main extends Component {
   }
 
   handleCatClick= cat =>{
+    console.log(cat);
     this.setState({
       cafeCat:cat
     })
+  }
+
+  handleCafeCatClick= cat => {
+    console.log('momo',cat);
   }
 
   render() {
@@ -21,7 +26,8 @@ export default class Main extends Component {
       <div className="main">
       <User/>
       <Cafe
-      cat={this.state.cafeCat}/>
+      cat={this.state.cafeCat}
+      handleCatClick={this.handleCafeCatClick}/>
 
       <CatContainer
       cats={this.props.cats}
