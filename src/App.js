@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import FrontPage from './components/frontPage/FrontPage.js';
+import Nav from './components/nav/Nav.js';
+import Main from './components/main/Main.js';
+// import logo from './logo.gif';
 import './App.css';
 
-function App() {
+class App extends React.Component {
+
+  state={
+    cats: [],
+    current_user: ''
+  }
+
+  componentDidMount(){
+    fetch('http://localhost:3000/cats')
+    .then(resp => resp.json())
+    .then(data => this.setState({
+      cats:data
+    }))
+  }
+
+
+  render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <FrontPage/>
+    <Nav/>
+    <Main cats={this.state.cats}/>
     </div>
   );
+}
 }
 
 export default App;
