@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Line} from 'rc-progress';
 
 class Cat extends Component {
 
@@ -11,6 +12,7 @@ conditionalCat = () => {
       src = {this.props.cat.cat_img}
       alt = 'this a cat'/>
       <h1>{this.props.cat.name}</h1>
+      <Line percent={this.props.cat.affectionate+10} strokeWidth="10" strokeColor="#FBCDD0" trailColor="#D9D9D9" strokeLinecap="butt"/>
       </div>
     )
   }
