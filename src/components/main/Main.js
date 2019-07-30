@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import User from './User.js';
 import Cafe from './Cafe.js';
 import CatContainer from './CatContainer.js';
+import Nav from '../nav/Nav.js';
 import '../../Stylesheets/main.scss';
 
 export default class Main extends Component {
 
   state={
-    cafeCat: ""
+    cafeCat: "",
+    username: ""
   }
 
   handleCatClick= cat =>{
@@ -21,10 +23,12 @@ export default class Main extends Component {
     console.log('momo',cat);
   }
 
+
   render() {
     return (
       <div className="main">
-      <User/>
+      <Nav/>
+      <User current_user={this.props.current_user}/>
       <Cafe
       cat={this.state.cafeCat}
       handleCatClick={this.handleCafeCatClick}/>
