@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import '../../Stylesheets/frontpage.scss';
+import SignupPage from './SignupPage.js'
+import {withRouter} from 'react-router-dom'
+
 
 
 class FrontPage extends Component {
@@ -6,7 +10,8 @@ class FrontPage extends Component {
 
   state={
     username: '',
-    password: ''
+    password: '',
+    seen: false
   }
 
   handleChange = event => {
@@ -35,19 +40,57 @@ class FrontPage extends Component {
     })
   }
 
+  togglePop = () => {
+    this.setState({
+      seen: !this.state.seen
+    });
+  };
+
 
   render() {
     return (
-      <div>
-      <form onSubmit={this.handleSubmit}>
-      <input onChange={this.handleChange} type='text' name='username' value={this.state.username}/>
-      <input onChange={this.handleChange} type='password' name='password' value={this.state.password}/>
-      <input type='submit'/>
+      <div id='frontpage'>
+      <div className='log-in'>
+      <fieldset>
+
+      <form onSubmit={this.handleSubmit} >
+      <input type="radio" name="rg" id="sign-in" />
+
+      <label for="sign-in">Sign in</label>
+
+
+
+      <input
+      onChange={this.handleChange}
+      type='text'
+      name='username'
+      value={this.state.username}
+      placeholder="Username"
+      className="sign-up sign-in reset"/>
+
+      <input
+      onChange={this.handleChange}
+      type='password'
+      name='password'
+      value={this.state.password}
+      placeholder="Password"
+      className="sign-up sign-in"/>
+
+      <button>Submit</button>
       </form>
+      <div className='new-user'>
+      <div className="btn" onClick={this.togglePop}>
+      <button>New User?</button>
+      </div>
+      {this.state.seen ? <SignupPage toggle={this.togglePop} /> : null}
+      </div>
+      </fieldset>
+
+      </div>
       </div>
     );
   }
 
 }
 
-export default FrontPage;
+export default withRouter(FrontPage);
