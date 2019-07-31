@@ -13,7 +13,9 @@ class Cafe extends Component {
         <Cat
         className="cafe-cat"
         cat={this.props.cat}
-        handleCatClick={this.props.handleCatClick}/>
+        handleCatClick={this.props.handleCatClick}
+        handleDateMeButton={this.props.handleDateMeButton}
+        />
       </div>
     );
   }

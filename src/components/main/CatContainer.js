@@ -9,6 +9,7 @@ class CatContainer extends Component {
       className='side-bar-cat'
       key={cat.id}
       cat={cat}
+      handleDateMeButton={this.props.handleDateMeButton}
       handleCatClick={this.props.handleCatClick}/>)
     })
   }

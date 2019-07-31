@@ -14,6 +14,7 @@ class App extends React.Component {
     current_user: ''
   }
 
+
   componentDidMount(){
     fetch('http://localhost:3000/cats')
     .then(resp => resp.json())
@@ -27,6 +28,7 @@ class App extends React.Component {
       .then(data => this.setState({
         current_user: data
       }))
+
   }
 
 

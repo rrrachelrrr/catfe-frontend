@@ -16,9 +16,10 @@ export default class Main extends Component {
     catPersonality: "",
     catAdopted: "",
     catOwner: "",
-    catAffectionate: "",
+    catAffectionate: 0,
     catFavoriteTreat: "",
-    gold: ""
+    gold: "",
+    dateId: ""
   }
 
 
@@ -31,7 +32,7 @@ export default class Main extends Component {
       catPersonality: "",
       catAdopted: "",
       catOwner: "",
-      catAffectionate: "",
+      catAffectionate: 0,
       catFavoriteTreat: ""
     })
   }
@@ -44,7 +45,6 @@ export default class Main extends Component {
       catPersonality: cat.personality,
       catAdopted: cat.adopted,
       catOwner: cat.owner,
-      catAffectionate: cat.affectionate,
       catFavoriteTreat: cat.favorite_treat
     })
   }
@@ -52,11 +52,31 @@ export default class Main extends Component {
   handleTreatClick = e => {
     if (e.className === this.state.catFavoriteTreat){
       this.setState({
-        catAffectionate: this.state.catAffectionate + 15
+        catAffectionate: this.state.catAffectionate  + 15
       })
     }
     else this.setState({
-      catAffectionate: this.state.catAffectionate + 10
+      catAffectionate: this.state.catAffectionate  + 10
+    })
+  }
+
+  handleDateMeButton = data => {
+    this.setState({
+      catAffectionate: data.affectionate,
+      dateId: data.id
+    })
+  }
+
+
+  componentDidUpdate(){
+    fetch(`http://localhost:3000/cat_dates/${this.state.dateId}`,{
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        affectionate:this.state.affectionate
+      })
     })
   }
 
@@ -70,11 +90,15 @@ export default class Main extends Component {
 
         <Cafe
         cat={this.state.cafeCat}
-        handleCatClick={this.handleCafeCatClick}/>
+        handleCatClick={this.handleCafeCatClick}
+        handleDateMeButton={this.handleDateMeButton}
+        />
 
         <CatContainer
         cats={this.props.cats}
-        handleCatClick={this.handleCatClick}/>
+        handleCatClick={this.handleCatClick}
+        handleDateMeButton={this.handleDateMeButton}
+        />
 
         <div className="cat-info">
           <h4> {this.state.catName} </h4>
