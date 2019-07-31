@@ -17,13 +17,22 @@ export default class Main extends Component {
     catAdopted: "",
     catOwner: "",
     catAffectionate: "",
-    catFavoriteTreat: ""
+    catFavoriteTreat: "",
+    gold: ""
   }
 
 
   handleCatClick= cat =>{
     this.setState({
-      cafeCat:cat
+      cafeCat:cat,
+      catName: "",
+      catAge: "",
+      catBreed: "",
+      catPersonality: "",
+      catAdopted: "",
+      catOwner: "",
+      catAffectionate: "",
+      catFavoriteTreat: ""
     })
   }
 
@@ -40,9 +49,19 @@ export default class Main extends Component {
     })
   }
 
-
+  handleTreatClick = e => {
+    if (e.className === this.state.catFavoriteTreat){
+      this.setState({
+        catAffectionate: this.state.catAffectionate + 15
+      })
+    }
+    else this.setState({
+      catAffectionate: this.state.catAffectionate + 10
+    })
+  }
 
   render() {
+    console.log(this.state)
     return (
       <div className="main">
         <Nav/>
@@ -61,9 +80,14 @@ export default class Main extends Component {
           <h4> {this.state.catName} </h4>
           <h4> {this.state.catBreed} </h4>
           <h4> {this.state.catPersonality} </h4>
-
         </div>
 
+        <div onClick= {(event) => this.handleTreatClick(event.target)}className="treats">
+          <h3 className="shrimp">🍤</h3>
+          <h3 className="chicken">🐔</h3>
+          <h3 className="seafood">🐟</h3>
+          <h3 className="beef">🥩</h3>
+        </div>
       </div>
     );
   }

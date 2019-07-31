@@ -9,11 +9,11 @@ class Cafe extends Component {
 
     return (
       <div>
-      <img className='cafe' src={img} alt='a cafe'/>
-      <Cat
-      className="cafe-cat"
-      cat={this.props.cat}
-      handleCatClick={this.props.handleCatClick}/>
+        <img className='cafe' src={img} alt='a cafe'/>
+        <Cat
+        className="cafe-cat"
+        cat={this.props.cat}
+        handleCatClick={this.props.handleCatClick}/>
       </div>
     );
   }
