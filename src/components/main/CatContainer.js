@@ -17,7 +17,6 @@ class CatContainer extends Component {
   render() {
     return (
       <div>
-      Hello from cat container
       {this.loadCats()}
       </div>
 
