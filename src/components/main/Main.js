@@ -53,12 +53,24 @@ export default class Main extends Component {
     if (e.className === this.state.catFavoriteTreat){
       this.setState({
         catAffectionate: this.state.catAffectionate  + 15
-      })
+      }, this.eatTreats)
     }
     else this.setState({
       catAffectionate: this.state.catAffectionate  + 10
-    })
+    }, this.eatTreats)
   }
+
+  eatTreats = () => {
+  const affection = parseInt(this.state.catAffectionate)
+  fetch(`http://localhost:3000/cat_dates/${this.state.dateId}`,{
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      affectionate:  affection
+    })
+  })}
 
   handleDateMeButton = data => {
     this.setState({
@@ -68,21 +80,9 @@ export default class Main extends Component {
   }
 
 
-  componentDidUpdate(){
-    fetch(`http://localhost:3000/cat_dates/${this.state.dateId}`,{
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        affectionate:this.state.affectionate
-      })
-    })
-  }
 
   render() {
-    console.log(this.state)
-    return (
+      return (
       <div className="main">
         <Nav/>
 
@@ -92,12 +92,14 @@ export default class Main extends Component {
         cat={this.state.cafeCat}
         handleCatClick={this.handleCafeCatClick}
         handleDateMeButton={this.handleDateMeButton}
+        affectionate={this.state.catAffectionate}
         />
 
         <CatContainer
         cats={this.props.cats}
         handleCatClick={this.handleCatClick}
         handleDateMeButton={this.handleDateMeButton}
+        affectionate={this.state.catAffectionate}
         />
 
         <div className="cat-info">

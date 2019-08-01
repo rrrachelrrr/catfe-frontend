@@ -3,8 +3,12 @@ import {Line} from 'rc-progress';
 
 class Cat extends Component {
 
+state={
+  domAffectionate: ''
+}
+
   date = () => {
-    console.log(this.props);
+    // console.log(this.props);
     fetch('http://localhost:3000/feed',{
       method: 'POST',
       headers: {
@@ -17,6 +21,7 @@ class Cat extends Component {
     }).then(resp=> resp.json())
     .then(data=> {
       console.log(data);
+      this.setState({domAffectionate:data.affectionate})
     this.props.handleDateMeButton(data)
   })
   // .then(fetch(`http://localhost:3000/cat_dates/${this.state.catDateId}`)
@@ -29,10 +34,8 @@ class Cat extends Component {
   // }
   // ))
   // .then(() => this.props.handleDateMeButton(this.state.affectionate))
-
-
-
   }
+
 
 conditionalCat = () => {
   if (this.props.className === 'side-bar-cat') {
@@ -42,7 +45,8 @@ conditionalCat = () => {
       src = {this.props.cat.cat_img}
       alt = 'this a cat'/>
       <h1>{this.props.cat.name}</h1>
-      <Line percent={this.props.cat.affectionate} strokeWidth="10" strokeColor="#FBCDD0" trailColor="#D9D9D9" strokeLinecap="round"/>
+      <h1>affectionate:{this.state.domAffectionate}</h1>
+      <Line percent={this.state.domAffectionate} strokeWidth="10" strokeColor="#FBCDD0" trailColor="#D9D9D9" strokeLinecap="round"/>
       </div>
     )
   }
@@ -54,12 +58,14 @@ conditionalCat = () => {
       src = {this.props.cat.cat_img}
       alt = 'this a cafe cat' />
       <h1>{this.props.cat.personality}</h1>
+      <h1>affectionate amount:{this.props.affection}</h1>
       <button onClick={this.date}>Date me?</button>
       </div>
       )
   }}
 
   render(){
+    console.log("meow",this.state)
     return(
       <cat>
       {this.conditionalCat()}

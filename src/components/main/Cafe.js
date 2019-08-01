@@ -5,6 +5,7 @@ class Cafe extends Component {
 
 
   render() {
+    // console.log(this.props)
     const img= 'https://image.freepik.com/free-vector/coffee-shop-flat-design_23-2147539487.jpg'
 
     return (
@@ -15,6 +16,7 @@ class Cafe extends Component {
         cat={this.props.cat}
         handleCatClick={this.props.handleCatClick}
         handleDateMeButton={this.props.handleDateMeButton}
+        affectionate={this.props.catAffectionate}
         />
       </div>
     );

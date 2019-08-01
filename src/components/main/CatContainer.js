@@ -10,12 +10,14 @@ class CatContainer extends Component {
       key={cat.id}
       cat={cat}
       handleDateMeButton={this.props.handleDateMeButton}
-      handleCatClick={this.props.handleCatClick}/>)
+      handleCatClick={this.props.handleCatClick}
+      affectionate={this.props.catAffectionate}/>)
     })
   }
 
 
   render() {
+    // console.log("cat container", this.props)
     return (
       <div>
       {this.loadCats()}

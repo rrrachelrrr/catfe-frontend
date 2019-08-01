@@ -35,7 +35,8 @@ class App extends React.Component {
   render(){
     return (
       <Switch>
-      { localStorage.token ? <Route
+      { localStorage.token ?
+        <Route
         path="/catfe"
         render={ (routerProps) => <Main cats={this.state.cats} current_user={this.state.current_user} {...routerProps}/>} /> : null}
       <Route
